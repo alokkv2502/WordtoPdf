@@ -1,0 +1,94 @@
+body {
+    font-family: 'Times New Roman', Times, serif, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.success-message {
+    font-size: 1.2em;
+    color: #28a745;
+    text-align: center;
+}
+
+.file-metadata {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f1f8ff;
+    border: 1px solid #cce5ff;
+    border-radius: 8px;
+}
+
+.file-metadata h2 {
+    font-size: 1.5em;
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+.file-metadata ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 1em;
+}
+
+.file-metadata ul li {
+    margin: 10px 0;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.file-metadata ul li:last-child {
+    border-bottom: none;
+}
+
+.file-metadata .metadata-key {
+    font-weight: bold;
+    color: #0056b3;
+}
+
+.file-metadata .metadata-value {
+    color: #333;
+}
+
+.download-section {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.download-btn {
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background: #343a40;
+    color: white;
+}

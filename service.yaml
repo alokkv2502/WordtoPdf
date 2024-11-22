@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: django-documents-service
+spec:
+  selector:
+    app: django-documents-app
+  ports:
+    - protocol: TCP
+      port: 80      # Port exposed to the outside world
+      targetPort: 8800  # Port inside the container
+  type: LoadBalancer  # Exposes the service externally

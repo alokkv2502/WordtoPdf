@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <h1>Document Successfully Converted</h1>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Success Message -->
+        <p class="success-message">Your document has been converted successfully!</p>
+
+        <!-- File Metadata Section -->
+        <section class="file-metadata">
+            <h2>File Metadata:</h2>
+            {% if file_metadata %}
+                <ul>
+                    <li>
+                        <span class="metadata-key">Name:</span>
+                        <span class="metadata-value">{{ file_metadata.name }}</span>
+                    </li>
+                    <li>
+                        <span class="metadata-key">Size:</span>
+                        <span class="metadata-value">{{ file_metadata.size }} bytes</span>
+                    </li>
+                    <li>
+                        <span class="metadata-key">Created:</span>
+                        <span class="metadata-value">{{ file_metadata.creation_time }}</span>
+                    </li>
+                    <li>
+                        <span class="metadata-key">Modified:</span>
+                        <span class="metadata-value">{{ file_metadata.modification_time }}</span>
+                    </li>
+                    <li>
+                        <span class="metadata-key">File Type:</span>
+                        <span class="metadata-value">{{ file_metadata.file_type }}</span>
+                    </li>
+                    <li>
+                        <span class="metadata-key">File Size (KB):</span>
+                        <span class="metadata-value">{{ file_metadata.file_size }}</span>
+                    </li>
+                    <li>
+                        <span class="metadata-key">Duration:</span>
+                        <span class="metadata-value">{{ file_metadata.duration }}</span>
+                    </li>
+                </ul>
+            {% else %}
+                <p>No metadata available.</p>
+            {% endif %}
+        </section>
+
+        <!-- Download Section -->
+        <div class="download-section">
+            {% if document %}
+                <a href="{% url 'download' document.id %}" class="download-btn">Download PDF</a>
+            {% else %}
+                <p>No document available for download.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Your Application Name. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
