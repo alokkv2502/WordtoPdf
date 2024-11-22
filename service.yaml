@@ -8,5 +8,5 @@ spec:
   ports:
     - protocol: TCP
       port: 80      # Port exposed to the outside world
-      targetPort: 8800  # Port inside the container
+      targetPort: 8000  # Port inside the container
   type: LoadBalancer  # Exposes the service externally
