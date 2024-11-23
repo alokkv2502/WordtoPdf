@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-+_*96vuuz1w%+d=3m$&8gs0bnmmihb1m0i81&wy84hgkyj+aco
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app','.now.sh']
+ALLOWED_HOSTS = ['converter.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -78,12 +78,19 @@ WSGI_APPLICATION = 'converter.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+import dj_database_url
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(conn_max_age=600)
 }
+
 
 
 # Password validation
