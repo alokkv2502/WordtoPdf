@@ -3,7 +3,6 @@
 import os
 import sys
 
-
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'converter.settings')
@@ -17,6 +16,13 @@ def main():
         ) from exc
     execute_from_command_line(sys.argv)
 
+
+# ASGI handler for Vercel
+from django.core.asgi import get_asgi_application
+from mangum import Mangum  # Handles ASGI for serverless platforms
+
+application = get_asgi_application()
+handler = Mangum(application)
 
 if __name__ == '__main__':
     main()

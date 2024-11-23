@@ -1,10 +1,33 @@
 {
     "version": 2,
     "builds": [
-      { "src": "manage.py", "use": "@vercel/python" }
+      {
+        "src": "converter/wsgi.py",
+        "use": "@vercel/python",
+        "config": { "maxLambdaSize": "50mb" }
+      },
+      {
+        "src": "build_files.sh",
+        "use": "@vercel/static",
+        "config":{
+        "distDir": "staticfiles"
+      }
+    }
     ],
     "routes": [
-      { "src": "/(.*)", "dest": "manage.py" }
-    ]
+      {
+        "src": "/static/(.*)", 
+        "dest": "/static/$1"
+      },
+      {
+        "src": "/(.*)",  
+        "dest": "converter/wsgi.py"
+      }
+    ],
+    "env": {
+      "DJANGO_SECRET_KEY": "django-insecure-+_*96vuuz1w%+d=3m$&8gs0bnmmihb1m0i81&wy84hgkyj+aco",  
+      "DEBUG": "false",  
+      "ALLOWED_HOSTS": ".vercel.app,.your-custom-domain.com"  
+    }
   }
   
