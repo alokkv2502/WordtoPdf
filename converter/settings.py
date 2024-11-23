@@ -55,6 +55,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 ROOT_URLCONF = 'converter.urls'
+import os
 
 TEMPLATES = [
     {
@@ -88,7 +89,7 @@ WSGI_APPLICATION = 'converter.wsgi.application'
 import dj_database_url
 
 DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600)
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
 
 

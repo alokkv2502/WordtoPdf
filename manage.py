@@ -16,13 +16,13 @@ def main():
         ) from exc
     execute_from_command_line(sys.argv)
 
-
 # ASGI handler for Vercel
+if __name__ == '__main__':
+    main()
+
+# ASGI application for serverless deployment
 from django.core.asgi import get_asgi_application
 from mangum import Mangum  # Handles ASGI for serverless platforms
 
 application = get_asgi_application()
 handler = Mangum(application)
-
-if __name__ == '__main__':
-    main()
