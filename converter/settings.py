@@ -53,6 +53,9 @@ MIDDLEWARE = [
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
+import os
+
+print("DATABASE_URL:", os.environ.get('DATABASE_URL'))
 
 ROOT_URLCONF = 'converter.urls'
 import os
