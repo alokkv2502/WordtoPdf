@@ -8,19 +8,16 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <!-- Header Section -->
     <header class="header">
         <h1>Upload and Convert Your Document</h1>
     </header>
 
-    <!-- Container Section -->
     <div class="container">
         <h1 class="form-title">Upload .docx File</h1>
         {% if error %}
             <p class="error">{{ error }}</p>
         {% endif %}
 
-        <!-- Upload Form -->
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <label for="file">File:</label>
@@ -29,7 +26,6 @@
         </form>
     </div>
 
-    <!-- Footer Section -->
     <footer>
         <p>&copy; 2024 Your Application Name. All Rights Reserved.</p>
     </footer>

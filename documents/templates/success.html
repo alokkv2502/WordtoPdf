@@ -8,17 +8,13 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <!-- Header Section -->
     <header class="header">
         <h1>Document Successfully Converted</h1>
     </header>
 
-    <!-- Main Container -->
     <div class="container">
-        <!-- Success Message -->
         <p class="success-message">Your document has been converted successfully!</p>
 
-        <!-- File Metadata Section -->
         <section class="file-metadata">
             <h2>File Metadata:</h2>
             {% if file_metadata %}
@@ -57,7 +53,6 @@
             {% endif %}
         </section>
 
-        <!-- Download Section -->
         <div class="download-section">
             {% if document %}
                 <a href="{% url 'download' document.id %}" class="download-btn">Download PDF</a>
@@ -67,7 +62,6 @@
         </div>
     </div>
 
-    <!-- Footer Section -->
     <footer>
         <p>&copy; 2024 Your Application Name. All Rights Reserved.</p>
     </footer>

@@ -9,7 +9,6 @@ from fpdf import FPDF
 from pymediainfo import MediaInfo
 
 
-# File Upload View
 def upload_file(request):
     if request.method == "POST":
         form = UploadFileForm(request.POST, request.FILES)
@@ -18,15 +17,12 @@ def upload_file(request):
             document = Document(file=uploaded_file)
             document.save()  # Save the document instance to the database
 
-            # Save the uploaded file locally
             file_path = document.file.path
 
-            # Extract metadata
             basic_metadata = extract_basic_metadata(file_path)
             detailed_metadata = extract_detailed_metadata(file_path)
             file_metadata = {**basic_metadata, **detailed_metadata}
 
-            # Convert to PDF
             try:
                 convert_to_pdf(document)
             except Exception as e:
@@ -38,32 +34,26 @@ def upload_file(request):
     return render(request, "upload.html", {"form": form})
 
 
-# Success Page View
 def success(request, doc_id):
     document = get_object_or_404(Document, id=doc_id)
     return render(request, 'success.html', {'document': document})
 
 
-# DOCX to PDF Conversion
 def convert_to_pdf(document):
     docx_path = document.file.path
     pdf_path = docx_path.replace('.docx', '.pdf')
 
     try:
-        # Load the DOCX file
         doc = DocxDocument(docx_path)
         pdf = FPDF()
         pdf.add_page()
         pdf.set_font('Arial', size=12)
 
-        # Add paragraphs to the PDF
         for paragraph in doc.paragraphs:
             pdf.multi_cell(0, 10, paragraph.text)
 
-        # Save the PDF
         pdf.output(pdf_path)
 
-        # Associate the PDF file with the document
         document.pdf_file.name = os.path.relpath(pdf_path, start='media')  # Save relative path
         document.save()
     except Exception as e:
@@ -71,7 +61,6 @@ def convert_to_pdf(document):
         raise e
 
 
-# PDF Download View
 def download_pdf(request, doc_id):
     document = get_object_or_404(Document, id=doc_id)
     
@@ -87,7 +76,6 @@ def download_pdf(request, doc_id):
         return HttpResponse("The PDF file could not be found.", status=404)
 
 
-# Extract Basic Metadata
 def extract_basic_metadata(file_path):
     return {
         "name": os.path.basename(file_path),
@@ -98,7 +86,6 @@ def extract_basic_metadata(file_path):
     }
 
 
-# Extract Detailed Metadata
 def extract_detailed_metadata(file_path):
     try:
         media_info = MediaInfo.parse(file_path)
@@ -111,7 +98,6 @@ def extract_detailed_metadata(file_path):
         return metadata
     except Exception as e:
         print(f"Error extracting detailed metadata: {e}")
-        # Return empty metadata on error
         return {
             "duration": "N/A",
             "file_size": "N/A",
